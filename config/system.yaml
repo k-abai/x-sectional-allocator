@@ -1,0 +1,20 @@
+execution:
+  mode: "paper" # paper | live
+  allow_live: false # Global lock for live trading
+  max_position_pct: 0.5 # Max 50% of equity per position (CS can concentrate)
+  poll_interval: 1800 # Seconds between strategy loops
+
+safety:
+  kill_switch: false
+  require_2fa: true
+  stop_loss_pct: 0.05
+
+notifications:
+  email_enabled: false
+  daily_summary: true
+  to_email: "your_email@example.com"
+  from_email: "cs_engine@localhost"
+
+logging:
+  log_dir: "logs"
+  retention_days: 30

@@ -1,0 +1,47 @@
+# Cross-Sectional Strategy Configuration
+
+# Dry-run: when true, skip order execution and print debug summaries
+DRY_RUN_ALLOC: true
+
+# Data
+data_source: "csv"  # Options: "csv", "alpaca"
+ticker: "SPY"       # Primary benchmark ticker
+csv_path: "data/SPY.csv"
+
+# Cross-Sectional MA200 Allocator
+cs_allocator:
+  enabled: true
+  universe: ["QQQ", "EFA", "EEM", "XLU", "XLF", "XLI",
+              "XLV", "XLRE", "XLE", "XLK", "XLB", "XLP",
+              "XLY", "XLC"]
+  ma_window: 200
+  max_weight: 1.0     # Before budget cap
+  top_k: 2
+  allocation_mode: "equal"  # "equal" or "proportional"
+
+# Cross-Sectional Risk Gating (anti-churn + defensive allocation)
+cs_risk:
+  enabled: true
+  lookback_days: 21
+  pct_negative_threshold: 0.70
+  min_days_in_state: 3
+  defensive_assets: ["SHY", "IEF"]
+  defensive_split: "equal"
+  cash_fraction_of_cs: 0.50
+  log_debug: true
+
+# Budget Allocation (CS-only: full budget to CS sleeve)
+budgets:
+  cs_total_max: 0.98    # CS sleeve cap (total, all symbols)
+  cash_buffer: 0.02     # Uninvested cash reserve
+
+# Risk Management
+target_vol: 0.15
+transaction_cost: 0.0005
+
+# Portfolio Exposure Cap
+portfolio:
+  W_max: 1.0
+
+# Execution
+initial_capital: 100000.0

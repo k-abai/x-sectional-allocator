@@ -1,0 +1,6 @@
+python-dotenv
+pandas
+numpy
+scipy
+pyyaml
+alpaca-trade-api
