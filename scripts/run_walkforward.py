@@ -506,17 +506,17 @@ def main():
 
     equity.to_csv(output_dir / 'cs_walkforward_equity.csv', header=['equity'])
     print(f"\n[4] Saving outputs to {output_dir}/")
-    print(f"  ✓ Equity curve  → cs_walkforward_equity.csv  ({len(equity)} rows)")
+    print(f"  > Equity curve  -> cs_walkforward_equity.csv  ({len(equity)} rows)")
 
     if not trades.empty:
         trades.to_csv(output_dir / 'cs_walkforward_trades.csv', index=False)
-        print(f"  ✓ Rebalance log → cs_walkforward_trades.csv  ({len(trades)} rows)")
+        print(f"  > Rebalance log -> cs_walkforward_trades.csv  ({len(trades)} rows)")
 
     metrics_out = {'cs_allocator': metrics}
     if bm_metrics:
         metrics_out[benchmark_ticker] = bm_metrics
     pd.DataFrame(metrics_out).T.to_csv(output_dir / 'cs_walkforward_metrics.csv')
-    print(f"  ✓ Metrics       → cs_walkforward_metrics.csv")
+    print(f"  > Metrics       -> cs_walkforward_metrics.csv")
 
     if not args.no_chart:
         plot_results(equity, benchmark_equity, output_dir)
